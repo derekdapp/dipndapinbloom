@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  canvas_size: MyString
+  info: MyText
+  email: MyString
+  name: MyString
+  pass_key: MyString
+
+two:
+  canvas_size: MyString
+  info: MyText
+  email: MyString
+  name: MyString
+  pass_key: MyString

@@ -1,0 +1,67 @@
+<div class="container-fluid hidden-xs">
+	<div class="row">
+		<ol class="breadcrumb">
+		  <li><a href="/">Shop</a></li>
+		  <li class="active">Custom Order</li>
+		</ol>
+	</div>
+</div>
+
+<div class="container-fluid product">
+	<div class="row visible-xs product-mobile">
+		<div class="col-xs-12 text-center">
+			<h2 class="product-title">Custom Order</h2>
+			<div class="product-price">
+				<span class="price">14.00</span>
+			</div>
+		</div>
+	</div>	
+	<div class="row">
+		<div class="col-sm-8 ">
+			<img src="/assets/img/vase_1a.jpg" class="product-img img-responsive" alt="item">
+		</div>
+		<div class="col-sm-4 ">
+			<h2 class="product-title hidden-xs">Custom Order</h2>
+			<div class="product-price hidden-xs">
+				<span class="price">14.00</span>
+			</div>
+			<div class="product-detail">
+				<p>Collect all of our hand-thrown vessels for endless arrangement possibilities, whether filled with flowers or dressed with beads.</p>
+				<ul>
+					<li>Holds objects, collections of stones or shells, or candles (sold separately) for a striking display.</li>
+					<li>Weighty bases are designed to counterbalance top-heavy stems.</li>
+					<li>Fluid design is finished with a cut rim.</li>
+					<li>Monogramming is available at an additional charge.</li>
+					<li>Monogram will be centered on the side of the bowl.</li>
+					<li>Small: 6.5" diameter, 7" high</li>
+				</ul>
+			</div>
+			
+			<%= form_for @custom, :html => {:class => ""} do |f| %>
+			<div class="form-group clearfix">
+			  <%= f.label :canvas_size, class: "col-sm-4 control-label" %>
+			  <%= f.select(:canvas_size, [['12x12'], ['16x20']], {}, :class => "col-sm-8 form-control") %>
+			</div>
+
+			<div class="form-group clearfix">
+			  <%= f.label :info, class: "col-sm-4 control-label" %>
+			  <%= f.text_area :info, class: "col-sm-8 form-control", placeholder: "Special instructions for text, color, and decorations." %>
+			</div>
+			  
+			<div class="form-group clearfix">
+			  <%= f.label :email, class: "col-sm-4 control-label" %>
+			  <%= f.text_field :email, class: "col-sm-8 form-control", placeholder: "Email" %>
+			</div>
+			  
+			<div class="form-group clearfix">
+			  <%= f.label :name, class: "col-sm-4 control-label" %>
+			  <%= f.text_field :name, class: "col-sm-8 form-control", placeholder: "Full Name" %>
+			</div>
+			     
+		    <div class="product-btn">
+				<%= f.submit 'Create Ticket', class: "btn" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

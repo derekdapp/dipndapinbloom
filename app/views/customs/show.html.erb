@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <h1><%= @order.pass_key %></h1>
+  <% if !@unlocked %>
+  <div class="row row-centered content">
+  	<div class="col-md-12">
+  		<div class="col-sm-9 form-group">
+  			<input class="form-control code-input" placeholder="access code"></input>
+  		</div>
+  		<div class="col-sm-3 form-group">
+  			<button class="btn" id="code-submit">Enter</button>
+  		</div>
+  	</div>
+  </div>
+  <%elsif @unlocked%>
+  <div class="row">
+    <div class="col-sm-12 blog-content"> 
+      <article>
+        <header>
+          <h1><strong>Custom Order for <%=@order.name%></strong></h1>
+        </header>
+        <div class="post-date">
+          Created: <%= @order.created_at %> <span><%=@order.email%></span>
+        </div> 
+        <div>
+          <p><h3>Status: Pending</h3></p>
+          <small>(pending - inprogress - completed - awaiting payment - complete)</small>
+
+        </div> 
+        <div>
+          <p><h3>Info:</h3></p>
+          <p>"<%= @order.info %>"</p>
+        </div>
+        <hr>
+        <h3>11 Messages</h3>  
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading"><a href="">Jessica Red</a><span>3d ago</span></h4>
+            <p>It may comfort you to know that Fry's death took only fifteen seconds, yet the pain was so intense, that it felt to him like fifteen years.  </p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Add a new message</h3>
+      <form action="index.html" method="post" novalidate class="myform" id="mycomment">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 wow fadeInUp" >
+            <div class="form-group">
+              <label class="control-label">Message Content</label>
+              <div class="controls">
+                <textarea name="comments" placeholder="Join the discussion..." class="form-control input-lg requiredField" rows="3" data-error-empty="Please enter comment"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Name</label>
+                  <div class="controls">
+                    <input name="contactName" placeholder="Name" class="form-control input-lg requiredField " type="text" data-error-empty="Please enter name">
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Email</label>
+                  <div class=" controls">
+                    <input name="email" placeholder="Email" class="form-control input-lg requiredField" type="email" data-error-empty="Please enter email" data-error-invalid="Invalid email address">
+                  </div>
+                </div>  
+              </div>  
+            </div>  
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <button name="submit" type="submit" class="btn btn-block" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Comment Sent">Send Comment</button>
+                  <input type="hidden" name="submitted" id="submitted3" value="true">
+                </div>  
+              </div>  
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+    </article>
+    
+  </div>
+</div>
+<% end %>
+
+<div>
+  <script type="text/javascript">
+  var url = document.URL;
+  $( "#code-submit" ).click(function() {
+   url = url + '?code=' + $('.code-input').val();
+   window.location.href = url;
+ });
+  </script>

@@ -19,10 +19,10 @@
           <h1><strong>Custom Order for <%=@order.name%></strong></h1>
         </header>
         <div class="post-date">
-          Created: <%= @order.created_at %> <span><%=@order.email%></span>
+          Created: <%= @order.created_at %> <span><a href="mailto:<%=@order.email%>"><%=@order.email%></a></span>
         </div> 
         <div>
-          <p><h3>Status: Pending</h3></p>
+          <p><h3>Status: <%= @order.status %></h3></p>
           <small>(pending - inprogress - completed - awaiting payment - complete)</small>
 
         </div> 
@@ -30,59 +30,81 @@
           <p><h3>Info:</h3></p>
           <p>"<%= @order.info %>"</p>
         </div>
-        <hr>
-        <h3>11 Messages</h3>  
-        <div class="media">
-          <div class="media-body">
-            <h4 class="media-heading"><a href="">Jessica Red</a><span>3d ago</span></h4>
-            <p>It may comfort you to know that Fry's death took only fifteen seconds, yet the pain was so intense, that it felt to him like fifteen years.  </p>
-          </div>
+        <div>
+          <p><h3>Canvas Size:</h3></p>
+          <p>"<%= @order.canvas_size %>"</p>
         </div>
-      </div>
+        <hr>
+        <h3><%= @order.messages.count%> Messages</h3>  
+        <div class="media">
+
+          <% @order.messages.each do |message| %>
+          <div class="media-body">
+            <h4 class="media-heading"><a href="mailto:<%=message.email%>"><%= message.author %></a><span><%= time_ago_in_words(message.created_at) %></span></h4>
+            <p><%= message.body %></p>
+            <p><%= image_tag message.image_url.to_s %></p>
+          </div>
+          <%end%>
+
+        </div>
+        <hr>
+      
 
       <h3>Add a new message</h3>
-      <form action="index.html" method="post" novalidate class="myform" id="mycomment">
+      
+        
+      
+      <%= form_for([@order, @order.messages.build],:html => {:mulitipart => true}) do |f| %>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 wow fadeInUp" >
             <div class="form-group">
-              <label class="control-label">Message Content</label>
+              <%= f.label :body,"Message", class: "control-label" %>
               <div class="controls">
-                <textarea name="comments" placeholder="Join the discussion..." class="form-control input-lg requiredField" rows="3" data-error-empty="Please enter comment"></textarea>
+                <%= f.text_area :body, class:"form-control input-lg requiredField", rows:"3"%>
               </div>
             </div>
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="form-group">
-                  <label class="control-label">Name</label>
+                  <%= f.label :author, "Name", class: "control-label" %>
                   <div class="controls">
-                    <input name="contactName" placeholder="Name" class="form-control input-lg requiredField " type="text" data-error-empty="Please enter name">
+                    <% if authenticated? %>
+                    <%= f.text_field :author, value:"#{@order.name}", class:"form-control input-lg requiredField", type:"email"%>
+                    <% else %>
+                      <%= f.text_field :author, value:"Janessa", class:"form-control input-lg requiredField"%>
+                    <% end %>
                   </div>
                 </div>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="form-group">
-                  <label class="control-label">Email</label>
-                  <div class=" controls">
-                    <input name="email" placeholder="Email" class="form-control input-lg requiredField" type="email" data-error-empty="Please enter email" data-error-invalid="Invalid email address">
+               <div class="form-group">
+                  <%= f.label :email, class: "control-label" %>
+                  <div class="controls">
+                    <% if authenticated? %>
+                    <%= f.text_field :email, value:"#{@order.email}", class:"form-control input-lg requiredField", type:"email"%>
+                    <% else %>
+                      <%= f.text_field :email, value:"", class:"form-control input-lg requiredField", type:"email"%>
+                    <% end %>
                   </div>
-                </div>  
+                </div>
               </div>  
             </div>  
             <div class="row">
               <div class="col-xs-12">
                 <div class="form-group">
-                  <button name="submit" type="submit" class="btn btn-block" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Comment Sent">Send Comment</button>
-                  <input type="hidden" name="submitted" id="submitted3" value="true">
+                  <%= f.submit 'Send Message', class: "btn btn-block" %>
                 </div>  
               </div>  
             </div>
           </div>
         </div>
-      </form>
+
+        <%= f.file_field :image %>
+      <% end %>
 
 
     </article>
-    
+    </div>
   </div>
 </div>
 <% end %>

@@ -1,4 +1,9 @@
 class CustomsController < ApplicationController
+  before_filter :authenticate, :except => [:create, :show, :new]
+
+  def index
+    @orders = Custom.all
+  end
   def create
     @custom = Custom.new(custom_params)
     @custom.pass_key = make_passcode
@@ -10,6 +15,12 @@ class CustomsController < ApplicationController
   end
 
   def update
+    @custom = Custom.find(params[:id])
+    if @custom.update(custom_params)
+      redirect_to custom_path(@custom, :code => @custom.pass_key)
+    else
+      render :edit, notice: "failure"
+    end
   end
 
   def new
@@ -17,6 +28,14 @@ class CustomsController < ApplicationController
   end
 
   def edit
+    @custom = Custom.find(params[:id])
+  end
+
+  def destroy
+
+    @order = Custom.find(params[:id])
+    @order.destroy
+    redirect_to customs_path, notice: 'Project was successfully deleted.'
   end
 
   def show
@@ -40,6 +59,18 @@ class CustomsController < ApplicationController
     key
   end
   def custom_params
-    params.require(:custom).permit(:canvas_size, :name, :info, :email)
+    params.require(:custom).permit(:canvas_size, :name, :info, :email, :status)
   end
+
+  protected
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      @authenticated = username == "foo" && password == "bar"
+    end
+  end
+
+  def authenticated?
+    @authenticated
+  end
+  helper_method :authenticated?
 end

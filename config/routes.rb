@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'messages/create'
+
   root 'static_pages#home'
-  get '/custom', :to => 'customs#new'
+  get '/custom', :to => 'customs#new', as: 'new_custom'
   get '/works', :to => 'static_pages#works'
-  resources :customs
+  resources :customs do
+    resources :messages
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,25 @@
+<div class="container-fluid">
+	<table class="table table-striped">
+  <tr>
+    <th>Date Created</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>View</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+ 
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.created_at %></td>
+      <td><%= order.name %></td>
+      <td><%= order.status %></td>
+      <td><%= link_to "View", custom_path(order, :code => order.pass_key) %></td>
+      <td><%= link_to "Edit", edit_custom_path(order) %></td>
+      <td><%= link_to 'Destroy', custom_path(order),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+</div>

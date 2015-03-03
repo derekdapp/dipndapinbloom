@@ -1,2 +1,28 @@
-<h1>Customs#edit</h1>
-<p>Find me in app/views/customs/edit.html.erb</p>
+<div class="container-fluid">
+<%= form_for @custom, :html => {:class => ""} do |f| %>
+
+<div class="form-group clearfix">
+  <%= f.label :info, class: "col-sm-4 control-label" %>
+  <%= f.text_area :info, class: "col-sm-8 form-control", placeholder: "Special instructions for text, color, and decorations.", disabled: true %>
+</div>
+  
+<div class="form-group clearfix">
+  <%= f.label :email, class: "col-sm-4 control-label" %>
+  <%= f.text_field :email, class: "col-sm-8 form-control", placeholder: "Email", disabled: true  %>
+</div>
+  
+<div class="form-group clearfix">
+  <%= f.label :name, class: "col-sm-4 control-label" %>
+  <%= f.text_field :name, class: "col-sm-8 form-control", placeholder: "Full Name", disabled: true  %>
+</div>
+
+<div class="form-group clearfix">
+  <%= f.label :status, class: "col-sm-4 control-label" %>
+  <%= f.text_field :status, class: "col-sm-8 form-control", placeholder: "Status"%>
+</div>
+     
+<div class="product-btn">
+	<%= f.submit 'Create Ticket', class: "btn" %>
+</div>
+<% end %>
+</div>

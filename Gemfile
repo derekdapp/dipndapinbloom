@@ -40,3 +40,4 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'icomoon-rails'
 gem 'carrierwave'
+gem "letter_opener", :group => :development

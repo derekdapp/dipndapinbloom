@@ -7,8 +7,9 @@ class CustomsController < ApplicationController
   def create
     @custom = Custom.new(custom_params)
     @custom.pass_key = make_passcode
+    @custom.status = "pending"
     if @custom.save
-      redirect_to action: "show", id: @custom.id
+      redirect_to custom_path(@custom, :code => @custom.pass_key)
     else
       render 'new'
     end

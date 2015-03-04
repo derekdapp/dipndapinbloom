@@ -1,5 +1,4 @@
 <div class="container-fluid">
-  <h1><%= @order.pass_key %></h1>
   <% if !@unlocked %>
   <div class="row row-centered content">
   	<div class="col-md-12">
@@ -19,7 +18,7 @@
           <h1><strong>Custom Order for <%=@order.name%></strong></h1>
         </header>
         <div class="post-date">
-          Created: <%= @order.created_at %> <span><a href="mailto:<%=@order.email%>"><%=@order.email%></a></span>
+          Created: <%= @order.created_at %>
         </div> 
         <div>
           <p><h3>Status: <%= @order.status %></h3></p>
@@ -35,14 +34,15 @@
           <p>"<%= @order.canvas_size %>"</p>
         </div>
         <hr>
-        <h3><%= @order.messages.count%> Messages</h3>  
+        <div><h3><%= @order.messages.count%> Messages</h3> <span><a href="mailto:<%=@order.email%>"><%=@order.email%></a></span> 
+        </div>
         <div class="media">
 
           <% @order.messages.each do |message| %>
           <div class="media-body">
             <h4 class="media-heading"><a href="mailto:<%=message.email%>"><%= message.author %></a><span><%= time_ago_in_words(message.created_at) %></span></h4>
             <p><%= message.body %></p>
-            <p><%= image_tag message.image_url.to_s %></p>
+            <%= image_tag message.image_url.to_s if message.image %>
           </div>
           <%end%>
 

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get '/custom', :to => 'customs#new', as: 'new_custom'
   get '/works', :to => 'static_pages#works'
+  get '/tos', :to => 'static_pages#tos'
+  get '/contact', :to => 'static_pages#contact'
   resources :customs do
     resources :messages
   end

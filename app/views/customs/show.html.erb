@@ -16,7 +16,7 @@
       <article>
         <header>
           <h1><strong>Custom Order for <%=@order.name%></strong></h1> Order Number: <%= @order.id %>
-          <%= link_to "Pay", bill_path(@bill, code: @bill.pass_key), class: "btn pull-right" %>
+          <%= link_to "Pay", bill_path(@bill, code: @bill.pass_key), class: "btn pull-right" if @bill.payable && @bill.is_paid == false %>
         </header>
         <div class="post-date">
           Created: <%= @order.created_at %>

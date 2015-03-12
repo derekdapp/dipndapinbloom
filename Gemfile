@@ -43,3 +43,6 @@ gem 'carrierwave'
 gem "letter_opener", :group => :development
 gem 'stripe'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'fog'
+gem 'figaro'
+gem 'puma'

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/works', :to => 'static_pages#works'
   get '/tos', :to => 'static_pages#tos'
   get '/contact', :to => 'static_pages#contact'
+  get '/faq', :to => 'static_pages#faq'
   resources :customs do
     resources :messages
   end

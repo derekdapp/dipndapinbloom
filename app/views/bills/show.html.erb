@@ -1,0 +1,50 @@
+<div class="container-fluid content">
+<div class="col-sm-12 ">
+	<table class="table">
+	  <thead>
+		<tr>
+		  <th colspan="3" class="text-center">You're purchasing this…</th>
+		</tr>
+	  </thead>
+
+	  <tbody>
+		<tr>
+		  <td class="vert-align">Custom order</td>
+		  <td class="vert-align text-right">$<%= number_with_precision(@bill.subtotal, :precision => 2) %></td>
+		</tr>
+	
+		<tr>
+		  <td class="vert-align"><b>Cart subtotal</b></td>
+		  <td class="vert-align text-right"><b>$<%= number_with_precision(@bill.subtotal, :precision => 2) %></b></td>
+		</tr>
+		<tr>
+		  <td class="vert-align">Shipping cost:</td>
+		  <td class="vert-align text-right">Local Pickup Only - Free</td>
+		</tr>
+		<tr>
+		  <td class="vert-align">Tip Amount:</td>
+		  <td class="vert-align text-right">$<%= number_with_precision(@bill.tip, :precision => 2) %>
+		  	<%= form_for @bill do |f| %>
+		  		<%= f.text_field :tip, class: "money-field" %>
+		  		<%= f.submit "Apply Tip" %>
+		  	<%end%>
+		  </td>
+		</tr>
+		<tr>
+		  <td class="vert-align">Total:</td>
+		  <td class="vert-align text-right" id="total">$<%= number_with_precision(@bill.subtotal+@bill.tip, :precision => 2) %></td>
+		</tr>
+	  </tbody>
+	</table>
+	<div>
+		<p>
+			<%= form_tag bills_charge_path(:id => @bill.id), remote: true do %>
+			  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+			          data-description="Complete Order"
+			          data-amount="<%= (@bill.subtotal+@bill.tip)*100%>"></script>
+			<% end %>
+		</p>
+	</div>
+</div>
+</div>

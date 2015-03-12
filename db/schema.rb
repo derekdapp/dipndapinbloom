@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303232404) do
+ActiveRecord::Schema.define(version: 20150308042405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bills", force: true do |t|
+    t.boolean  "is_paid",    default: false
+    t.float    "total",      default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "tip",        default: 0.0
+    t.float    "subtotal",   default: 0.0
+    t.integer  "custom_id"
+    t.boolean  "payable",    default: false
+    t.string   "pass_key"
+  end
 
   create_table "customs", force: true do |t|
     t.string   "canvas_size"

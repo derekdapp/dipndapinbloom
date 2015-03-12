@@ -1,0 +1,14 @@
+<div class="container-fluid">
+<%= form_for @bill do |f| %>
+	<div class="form-group clearfix">
+	  <%= f.label :subtotal, class: " control-label" %> ($<%= number_with_precision(@bill.subtotal, :precision => 2) %>)
+	  <%= f.text_field :subtotal, class: "col-sm-8 form-control money-field", placeholder: "Special instructions for text, color, and decorations."%>
+	</div>
+	<div class="form-group clearfix">
+	  <%= f.check_box :payable %>Allow User To Pay
+	</div>
+	
+	<%= f.submit "Update" %>
+<%end%>
+<%=link_to "Return To Orders", customs_path %>
+</div>

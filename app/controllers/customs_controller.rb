@@ -8,8 +8,10 @@ class CustomsController < ApplicationController
     @custom = Custom.new(custom_params)
     @custom.pass_key = make_passcode
     @custom.status = "pending"
+    @custom.create_bill
+    @custom.bill.pass_key = @custom.pass_key
     if @custom.save
-      redirect_to custom_path(@custom, :code => @custom.pass_key)
+          redirect_to custom_path(@custom, :code => @custom.pass_key)
     else
       render 'new'
     end
@@ -32,21 +34,22 @@ class CustomsController < ApplicationController
     @custom = Custom.find(params[:id])
   end
 
-  def destroy
+  # def destroy
 
-    @order = Custom.find(params[:id])
-    @order.destroy
-    redirect_to customs_path, notice: 'Project was successfully deleted.'
-  end
+  #   @order = Custom.find(params[:id])
+  #   @order.destroy
+  #   redirect_to customs_path, notice: 'Project was successfully deleted.'
+  # end
 
   def show
     @order = Custom.find(params[:id])
+    @bill = @order.bill
     @unlocked = false
     if params['code'] && params['code'] == @order.pass_key
       @order = Custom.find(params[:id])
       @unlocked = true
-    elsif params['code'] && params['code'] != @order.pass_key
-      redirect_to action: "show", id: @order.id
+    else
+      redirect_to root_path
     end
   end
 
@@ -66,12 +69,7 @@ class CustomsController < ApplicationController
   protected
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      @authenticated = username == "foo" && password == "bar"
+      session[:admin] = (username == "foo" && password == "bar")
     end
   end
-
-  def authenticated?
-    @authenticated
-  end
-  helper_method :authenticated?
 end

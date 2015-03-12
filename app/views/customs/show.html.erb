@@ -15,7 +15,8 @@
     <div class="col-sm-12 blog-content"> 
       <article>
         <header>
-          <h1><strong>Custom Order for <%=@order.name%></strong></h1>
+          <h1><strong>Custom Order for <%=@order.name%></strong></h1> Order Number: <%= @order.id %>
+          <%= link_to "Pay", bill_path(@bill, code: @bill.pass_key), class: "btn pull-right" %>
         </header>
         <div class="post-date">
           Created: <%= @order.created_at %>
@@ -23,7 +24,6 @@
         <div>
           <p><h3>Status: <%= @order.status %></h3></p>
           <small>(pending - inprogress - completed - awaiting payment - complete)</small>
-
         </div> 
         <div>
           <p><h3>Info:</h3></p>
@@ -42,7 +42,8 @@
           <div class="media-body">
             <h4 class="media-heading"><a href="mailto:<%=message.email%>"><%= message.author %></a><span><%= time_ago_in_words(message.created_at) %></span></h4>
             <p><%= message.body %></p>
-            <%= image_tag message.image_url.to_s if message.image %>
+            
+            <%= image_tag message.image_url.to_s, class: "message-image" if message.image %>
           </div>
           <%end%>
 
@@ -68,10 +69,10 @@
                 <div class="form-group">
                   <%= f.label :author, "Name", class: "control-label" %>
                   <div class="controls">
-                    <% if authenticated? %>
-                    <%= f.text_field :author, value:"#{@order.name}", class:"form-control input-lg requiredField", type:"email"%>
+                    <% if session[:admin] %>
+                    <%= f.text_field :author, value:"Janessa", class:"form-control input-lg requiredField"%>
                     <% else %>
-                      <%= f.text_field :author, value:"Janessa", class:"form-control input-lg requiredField"%>
+                      <%= f.text_field :author, value:"#{@order.name}", class:"form-control input-lg requiredField"%>
                     <% end %>
                   </div>
                 </div>
@@ -80,10 +81,10 @@
                <div class="form-group">
                   <%= f.label :email, class: "control-label" %>
                   <div class="controls">
-                    <% if authenticated? %>
-                    <%= f.text_field :email, value:"#{@order.email}", class:"form-control input-lg requiredField", type:"email"%>
+                    <% if session[:admin] %>
+                    <%= f.text_field :email, value:"dipndapinbloom@gmail.com", class:"form-control input-lg requiredField", type:"email"%>
                     <% else %>
-                      <%= f.text_field :email, value:"", class:"form-control input-lg requiredField", type:"email"%>
+                      <%= f.text_field :email, value:"#{@order.email}", class:"form-control input-lg requiredField", type:"email"%>
                     <% end %>
                   </div>
                 </div>

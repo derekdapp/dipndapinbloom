@@ -570,7 +570,7 @@ address {
 /* ------------------------------ skin checkbox -------------------------- */
 input[type="radio"],
 input[type="checkbox"] {
-  display:none;
+  /*display:none;*/
 }
 
 input[type="radio"] + span:before,
@@ -720,7 +720,7 @@ a.nav-brand {
 	display: block;
 	margin: 0 auto;
 	text-align: center;
-	width: 260px;
+	width: 350px;
 	font-weight: 300;
 	line-height: 46px;
 	cursor: pointer;

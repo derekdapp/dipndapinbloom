@@ -57,7 +57,7 @@ class BillsController < ApplicationController
     protected
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      session[:admin] = (username == "foo" && password == "bar")
+      session[:admin] = (username == ENV['USERNAME'] && password == ENV['PASSWORD'])
     end
   end
 end

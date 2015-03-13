@@ -11,7 +11,7 @@ class CustomsController < ApplicationController
     @custom.create_bill
     @custom.bill.pass_key = @custom.pass_key
     if @custom.save
-          UserMailer.notify(@custom).deliver
+          # UserMailer.notify(@custom).deliver
           redirect_to custom_path(@custom, :code => @custom.pass_key)
     else
       render 'new'

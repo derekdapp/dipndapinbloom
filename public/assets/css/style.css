@@ -732,6 +732,7 @@ a.nav-brand {
 	-webkit-transition: all 0.3s ease-out;
 	-moz-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out;
+	width: 350px;
 }
 a.nav-brand span {
 	font-weight: 700;

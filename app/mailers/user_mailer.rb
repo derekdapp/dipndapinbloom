@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
   #
   def notify(custom)
     @custom = custom
-    @url = "http://localhost:3000/"
+    @url = "http://localhost:3000"
     @url += url_for custom_path(:id => @custom.id, :code => @custom.pass_key)
     mail to: custom.email, subject: "Custom Order from Dipndap"
   end

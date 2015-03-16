@@ -34,6 +34,7 @@ class BillsController < ApplicationController
 	  )
 	  @bill.is_paid = true
 	  @bill.save!
+	  UserMailer.paid_notify(@custom).deliver
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message
 

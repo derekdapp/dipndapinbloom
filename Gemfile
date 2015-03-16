@@ -44,3 +44,4 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'fog'
 gem 'figaro'
 gem 'puma'
+gem "mini_magick"

@@ -2,10 +2,6 @@
 
 class ImageUploader < CarrierWave::Uploader::Base
 
-
-  include Sprockets::Helpers::RailsHelper
-  include Sprockets::Helpers::IsolatedHelper
-
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

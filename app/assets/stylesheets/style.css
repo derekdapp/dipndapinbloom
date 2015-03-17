@@ -1048,7 +1048,7 @@ blockquote footer, blockquote small, blockquote .small {
 	
 	a.nav-brand {
 		float: left;
-		width: auto;
+		width: 350px;
 		font-size: 28px;
 	
 		letter-spacing: -1px;

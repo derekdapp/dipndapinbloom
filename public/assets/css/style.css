@@ -715,14 +715,12 @@ ul.nav-list li a {
 a.nav-brand {
 	border: 2px solid #000;
 	/* padding: 4px; */
-	/*width: auto;*/	
-
-	width: 350px;
+	width: auto;
 	font-size: 38px;
 	display: block;
 	margin: 0 auto;
 	text-align: center;
-	width: 350px;
+	width: 375px;
 	font-weight: 300;
 	line-height: 46px;
 	cursor: pointer;
@@ -732,7 +730,6 @@ a.nav-brand {
 	-webkit-transition: all 0.3s ease-out;
 	-moz-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out;
-	width: 350px;
 }
 a.nav-brand span {
 	font-weight: 700;
@@ -741,7 +738,7 @@ a.nav-brand:hover {
 	background-color: #000;
 	color: #FFF;
 	text-decoration: none;
-	/*padding: 0px 10px;*/
+	padding: 0px 10px;
 }
 .cart {
 	position: absolute;
@@ -1051,7 +1048,7 @@ blockquote footer, blockquote small, blockquote .small {
 	
 	a.nav-brand {
 		float: left;
-		width: 350px;
+		width: auto;
 		font-size: 28px;
 	
 		letter-spacing: -1px;

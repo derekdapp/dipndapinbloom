@@ -720,7 +720,7 @@ a.nav-brand {
 	display: block;
 	margin: 0 auto;
 	text-align: center;
-	width: 350px;
+	width: 375px;
 	font-weight: 300;
 	line-height: 46px;
 	cursor: pointer;
@@ -1048,7 +1048,7 @@ blockquote footer, blockquote small, blockquote .small {
 	
 	a.nav-brand {
 		float: left;
-		width: 350px;
+		width: auto;
 		font-size: 28px;
 	
 		letter-spacing: -1px;

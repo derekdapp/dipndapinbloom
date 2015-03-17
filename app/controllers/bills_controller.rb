@@ -35,7 +35,9 @@ class BillsController < ApplicationController
 	  @bill.is_paid = true
 	  @bill.save!
 	  UserMailer.paid_notify(@custom).deliver
-	rescue Stripe::CardError => e
+	  @message = Message.create(author: "dipndap.com bot", body: "Order has been paid.", custom_id: @custom.id)
+	  @message.save!
+	  rescue Stripe::CardError => e
 	  flash[:error] = e.message
 
 	  respond_to do |format|

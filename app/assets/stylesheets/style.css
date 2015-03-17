@@ -715,12 +715,12 @@ ul.nav-list li a {
 a.nav-brand {
 	border: 2px solid #000;
 	/* padding: 4px; */
-	width: 350px;
+	width: auto;
 	font-size: 38px;
 	display: block;
 	margin: 0 auto;
 	text-align: center;
-	width: 260px;
+	width: 350px;
 	font-weight: 300;
 	line-height: 46px;
 	cursor: pointer;
